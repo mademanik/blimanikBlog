@@ -1,0 +1,84 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Table Basic -->
+    <div class="row" id="basic-table">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Add New Blog</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup] = "blogForm" (ngSubmit)="onSubmit()" class="mt-2">
+              <div class="row">
+                <div class="col-md-6 col-12">
+                  <div class="form-group mb-2">
+                    <label for="blog-edit-title"><span class="text-danger">*</span>Title</label>
+                    <input
+                      type="text"
+                      formControlName="title"
+                      id="title"
+                      name="title"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group mb-2">
+                    <label for="blog-edit-title"><span class="text-danger">*</span>Category</label>
+                    <input
+                      type="text"
+                      formControlName="category"
+                      id="category"
+                      name="category"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group mb-2">
+                    <label for="blog-edit-slug"><span class="text-danger">*</span>Slug</label>
+                    <input
+                      type="text"
+                      id="slug"
+                      formControlName="slug"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group mb-2">
+                    <label for="blog-edit-status"><span class="text-danger">*</span>Status</label>
+                    <select
+                      class="form-control cursor-pointer"
+                      id="status"
+                      formControlName="status"
+                      name="status"
+                    >
+                      <option value="published">Published</option>
+                      <option value="pending">Pending</option>
+                      <option value="draft">Draft</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-2">
+                    <label><span class="text-danger">*</span>Content</label>
+                    <quill-editor name="content" formControlName="content"> </quill-editor>
+                  </div>
+                </div>
+                <div class="col-8 mt-50"></div>
+                <div class="col-4 mt-50">
+                  <button type="button" class="btn btn-relief-danger ml-5" routerLink="/blogs" rippleEffect>Cancel</button>
+                  <button type="submit" class="btn btn-relief-primary ml-1 float-right" rippleEffect>Save Changes</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Table Basic -->
+  </div>
+</div>

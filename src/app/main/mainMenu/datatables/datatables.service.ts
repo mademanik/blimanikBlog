@@ -53,4 +53,12 @@ export class DatatablesService implements Resolve<any> {
   addBlogs(data: any) {
     return this._httpClient.post<any>(`http://localhost:3000/blogs`, data);
   }
+
+  getBlogById(id: number) {
+    return this._httpClient.get<any>(`http://localhost:3000/blogs/${id}`);
+  }
+
+  updateBlog(id: number, data: any) {
+    return this._httpClient.put<any>(`http://localhost:3000/blogs/${id}`, data);
+  }
 }

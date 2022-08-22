@@ -18,6 +18,11 @@ const routes: Routes = [
     component: TableComponent,
     data: { animation: "table" },
   },
+  {
+    path: "editBlog/:id",
+    component: TableComponent,
+    data: { animation: "table" },
+  },
 ];
 
 @NgModule({

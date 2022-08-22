@@ -7,7 +7,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Add New Blog</h4>
+            <h4 class="card-title">{{contentHeaderName}}</h4>
           </div>
           <div class="card-body">
             <form [formGroup] = "blogForm" (ngSubmit)="onSubmit()" class="mt-2">
@@ -68,10 +68,12 @@
                     <quill-editor name="content" formControlName="content"> </quill-editor>
                   </div>
                 </div>
-                <div class="col-8 mt-50"></div>
-                <div class="col-4 mt-50">
-                  <button type="button" class="btn btn-relief-danger ml-5" routerLink="/blogs" rippleEffect>Cancel</button>
-                  <button type="submit" class="btn btn-relief-primary ml-1 float-right" rippleEffect>Save Changes</button>
+                <div class="col-9 mt-50"></div>
+                <div class="col-auto mt-50">
+                  <div *ngIf="isEdit; then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock><button type="button" class="btn btn-relief-danger ml-2" routerLink="/blogs" rippleEffect>Cancel</button></ng-template>
+                  <ng-template #elseBlock><button type="button" class="btn btn-relief-danger ml-3" routerLink="/blogs" rippleEffect>Cancel</button></ng-template>
+                  <button type="submit" class="btn btn-relief-primary ml-1 float-right" rippleEffect>{{actionBtn}}</button>
                 </div>
               </div>
             </form>

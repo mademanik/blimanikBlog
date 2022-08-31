@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeDbService } from '@fake-db/fake-db.service';
@@ -21,6 +22,7 @@ import { coreConfig } from 'app/app-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { MainMenuModule } from 'app/main/mainMenu/mainMenu.module';
+import { httpInterceptorProviders } from '../_helpers/http.interceptor';
 
 const appRoutes: Routes = [
   {
@@ -67,8 +69,9 @@ const appRoutes: Routes = [
     // App modules
     LayoutModule,
     MainMenuModule,
+    FormsModule
   ],
-
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

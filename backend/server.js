@@ -4,13 +4,8 @@ const cookieSession = require("cookie-session");
 
 const app = express();
 
-var corsOptions = {
-  credentials: true,
-  origin: "http://localhost:8081",
-};
-
 // app.use(cors(corsOptions));
-app.use(cors({credentials: true, origin: 'http://localhost:8081'}));
+app.use(cors({ credentials: true, origin: "http://localhost:8081" }));
 
 // parse requests of content-type - application/json
 app.use(express.json());

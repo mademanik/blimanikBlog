@@ -15,7 +15,7 @@ import { DatatablesService } from './datatables.service';
 
 const routes: Routes = [
   {
-    path: 'blogs',
+    path: 'old/blogs',
     component: DatatablesComponent,
     resolve: {
       datatables: DatatablesService

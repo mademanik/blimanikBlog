@@ -15,6 +15,8 @@ import { HomeComponent } from "./home/home.component";
 
 import { TableModule } from './table/table.module';
 import { DatatablesModule } from './datatables/datatables.module';
+import { AddBlogModule } from './blogs/add-blog/add-blog.module';
+import { BlogsListModule } from './blogs/blogs-list/blogs-list.module';
 
 const routes = [
   {
@@ -36,7 +38,9 @@ const routes = [
     NgxDatatableModule,
     CsvModule,
     TableModule,
-    DatatablesModule
+    DatatablesModule,
+    AddBlogModule,
+    BlogsListModule
   ],
   exports: [HomeComponent],
 })

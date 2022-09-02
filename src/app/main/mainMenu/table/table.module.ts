@@ -14,12 +14,12 @@ import { TableComponent } from "./table.component";
 
 const routes: Routes = [
   {
-    path: "addBlog",
+    path: "old/addBlog",
     component: TableComponent,
     data: { animation: "table" },
   },
   {
-    path: "editBlog/:id",
+    path: "old/editBlog/:id",
     component: TableComponent,
     data: { animation: "table" },
   },

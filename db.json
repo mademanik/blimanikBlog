@@ -1,12 +1,12 @@
 {
   "blogs": [
     {
-      "content": "<p>Belajar Javascript Dasar</p>",
-      "title": "Belajar Javascript Dasar",
-      "category": "Javascript",
-      "slug": "belajar-javascript-dasar",
-      "status": "draft",
-      "id": 4
+      "content": "<p>belajar</p>",
+      "title": "belajar",
+      "category": "belajar",
+      "slug": "belajar",
+      "status": "pending",
+      "id": 1
     }
   ]
 }

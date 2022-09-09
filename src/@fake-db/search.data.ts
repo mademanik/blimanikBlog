@@ -147,7 +147,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Login v1 Page',
           icon: 'user-plus',
-          link: '/pages/authentication/login-v1'
+          link: '/authentication/login'
         },
         {
           id: 18,
@@ -155,15 +155,15 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Login v2 Page',
           icon: 'user-plus',
-          link: '/pages/authentication/login-v2'
+          link: '/authentication/login-v2'
         },
         {
           id: 19,
-          target: 'register-v1',
+          target: 'register',
           isBookmarked: false,
           title: 'Register v1 Page',
           icon: 'user-plus',
-          link: '/pages/authentication/register-v1'
+          link: '/authentication/register'
         },
         {
           id: 20,
@@ -171,7 +171,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Register v2 Page',
           icon: 'user-plus',
-          link: '/pages/authentication/register-v2'
+          link: '/authentication/register-v2'
         },
         {
           id: 21,
@@ -179,7 +179,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Forgot Password v1 Page',
           icon: 'trending-up',
-          link: '/pages/authentication/forgot-password-v1'
+          link: '/authentication/forgot-password'
         },
         {
           id: 22,
@@ -187,7 +187,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Forgot Password v2 Page',
           icon: 'trending-up',
-          link: '/pages/authentication/forgot-password-v2'
+          link: '/authentication/forgot-password-v2'
         },
         {
           id: 23,
@@ -195,7 +195,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Reset Password v1 Page',
           icon: 'trending-up',
-          link: '/pages/authentication/reset-password-v1'
+          link: '/authentication/reset-password-v1'
         },
         {
           id: 24,
@@ -203,7 +203,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Lock Screen',
           icon: 'trending-up',
-          link: '/pages/authentication/lock-screen'
+          link: '/authentication/lock-screen'
         },
         {
           id: 25,
@@ -211,7 +211,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Account Settings',
           icon: 'settings',
-          link: '/pages/account-settings'
+          link: '/account-settings'
         },
         {
           id: 26,
@@ -219,7 +219,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Profile Page',
           icon: 'users',
-          link: '/pages/profile',
+          link: '/profile',
           collapsed: true
         },
         {
@@ -228,7 +228,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'FAQ Page',
           icon: 'zap',
-          link: '/pages/faq'
+          link: '/faq'
         },
         {
           id: 28,
@@ -236,7 +236,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Knowledge Base Page',
           icon: 'align-left',
-          link: '/pages/knowledge-base'
+          link: '/knowledge-base'
         },
 
         {
@@ -245,7 +245,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Pricing',
           icon: 'dollar-sign',
-          link: '/pages/pricing'
+          link: '/pricing'
         },
 
         {
@@ -254,7 +254,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Blog List',
           icon: 'list',
-          link: '/pages/blog-list'
+          link: '/blog-list'
         },
         {
           id: 31,
@@ -262,7 +262,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Blog Details',
           icon: 'file-text',
-          link: '/pages/blog-details/1'
+          link: '/blog-details/1'
         },
         {
           id: 32,
@@ -270,7 +270,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Blog Edit',
           icon: 'edit',
-          link: '/pages/blog-edit'
+          link: '/blog-edit'
         },
 
         {

@@ -21,13 +21,13 @@ import { coreConfig } from 'app/app-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { MainMenuModule } from 'app/main/mainMenu/mainMenu.module';
+import { MainModule } from 'app/main/main.module';
 import { httpInterceptorProviders } from '../_helpers/http.interceptor';
 
 const appRoutes: Routes = [
   {
     path: 'pages',
-    loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule)
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {
     path: '',
@@ -36,7 +36,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
+    redirectTo: '/miscellaneous/error' //Error 404 - Page not found
   }
 ];
 
@@ -68,7 +68,7 @@ const appRoutes: Routes = [
 
     // App modules
     LayoutModule,
-    MainMenuModule,
+    MainModule,
     FormsModule
   ],
   providers: [httpInterceptorProviders],

@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit, HostBinding, HostListener, ViewEncapsulation } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 
+import { StorageService } from '../../../_services/storage.service';
+import { AuthService } from '../../../_services/auth.service';
+
 import * as _ from 'lodash';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -30,7 +33,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public currentSkin: string;
   public prevSkin: string;
 
-  public currentUser: User;
+  // public currentUser: User;
+  currentUser: any;
 
   public languageOptions: any;
   public navigation: any;
@@ -81,9 +85,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private _coreMediaService: CoreMediaService,
     private _coreSidebarService: CoreSidebarService,
     private _mediaObserver: MediaObserver,
-    public _translateService: TranslateService
+    public _translateService: TranslateService,
+    private storageService: StorageService,
+    private authService: AuthService,
   ) {
-    this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
+    // this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
 
     this.languageOptions = {
       en: {
@@ -166,6 +172,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
    */
   logout() {
     this._authenticationService.logout();
+
+    this.authService.logout().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.storageService.clean();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+
     this._router.navigate(['authentication/login']);
   }
 
@@ -177,7 +194,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     // get the currentUser details from localStorage
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.storageService.getUser();
+
+    console.log(this.currentUser.username);
+    
 
     // Subscribe to the config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {

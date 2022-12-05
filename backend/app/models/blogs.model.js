@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Blogs = sequelize.define("blogs", {
       content: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       title: {
         type: Sequelize.STRING,
@@ -13,6 +13,9 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
       },
       status: {
+        type: Sequelize.STRING,
+      },
+      fileUpload: {
         type: Sequelize.STRING,
       },
     });

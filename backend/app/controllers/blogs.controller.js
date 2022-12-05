@@ -11,6 +11,7 @@ exports.create = (req, res) => {
     category: req.body.category,
     slug: req.body.slug,
     status: req.body.status,
+    fileUpload : req.body.fileUpload,
   };
 
   // Save Blogs in the database

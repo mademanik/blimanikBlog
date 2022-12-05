@@ -1,61 +1,67 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeDbService } from '@fake-db/fake-db.service';
+import { CommonModule } from "@angular/common";
 
-import 'hammerjs';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
-import { ToastrModule } from 'ngx-toastr'; // For auth after login toast
+import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
+import { FakeDbService } from "@fake-db/fake-db.service";
 
-import { CoreModule } from '@core/core.module';
-import { CoreCommonModule } from '@core/common.module';
-import { CoreSidebarModule, CoreThemeCustomizerModule } from '@core/components';
+import "hammerjs";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { TranslateModule } from "@ngx-translate/core";
+import { ToastrModule } from "ngx-toastr"; // For auth after login toast
 
-import { coreConfig } from 'app/app-config';
+import { CsvModule } from "@ctrl/ngx-csv";
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { NgSelectModule } from "@ng-select/ng-select";
 
-import { AppComponent } from 'app/app.component';
-import { LayoutModule } from 'app/layout/layout.module';
-import { MainModule } from 'app/main/main.module';
-import { httpInterceptorProviders } from '../_helpers/http.interceptor';
+import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
 
-const appRoutes: Routes = [
-  {
-    path: 'pages',
-    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
-  },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    redirectTo: '/miscellaneous/error' //Error 404 - Page not found
-  }
-];
+import { CoreModule } from "@core/core.module";
+import { CoreCommonModule } from "@core/common.module";
+import { CoreSidebarModule, CoreThemeCustomizerModule } from "@core/components";
+
+import { coreConfig } from "app/app-config";
+
+import { AppComponent } from "app/app.component";
+import { LayoutModule } from "app/layout/layout.module";
+import { httpInterceptorProviders } from "../_helpers/http.interceptor";
+import { AppRoutingModule } from "./app-routing.module";
+
+import { ContentHeaderModule } from "app/layout/components/content-header/content-header.module";
+
+import { HomeComponent } from "./home/home.component";
+
+import { BlogsModule } from "./blogs/blogs.module";
+import { AuthenticationModule } from "./authentication/authentication.module";
+import { BerandaModule } from "./beranda/beranda.module";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(FakeDbService, {
       delay: 0,
-      passThruUnknownUrl: true
+      passThruUnknownUrl: true,
     }),
-    RouterModule.forRoot(appRoutes, {
-      scrollPositionRestoration: 'enabled', // Add options right here
-      relativeLinkResolution: 'legacy'
-    }),
+    AppRoutingModule,
     TranslateModule.forRoot(),
-
+    CommonModule,
+    CsvModule,
+    NgxDatatableModule,
+    NgSelectModule,
+    CardSnippetModule,
+    CoreModule,
+    CoreCommonModule,
+    ContentHeaderModule,
+    CoreThemeCustomizerModule,
+    CoreSidebarModule,
+    LayoutModule,
     //NgBootstrap
     NgbModule,
     ToastrModule.forRoot(),
@@ -68,10 +74,12 @@ const appRoutes: Routes = [
 
     // App modules
     LayoutModule,
-    MainModule,
-    FormsModule
+    FormsModule,
+    BlogsModule,
+    AuthenticationModule,
+    BerandaModule,
   ],
   providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

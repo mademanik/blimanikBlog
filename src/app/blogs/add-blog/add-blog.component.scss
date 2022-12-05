@@ -1,0 +1,13 @@
+@import "@core/scss/base/pages/page-blog";
+
+@import "@core/scss/angular/libs/quill-editor.component.scss";
+@import "@core/scss/angular/libs/select.component.scss";
+
+.preview {
+  margin-top: 23px;
+  max-width: 300px;
+}
+
+.ql-container {
+  height: 200px !important;
+}

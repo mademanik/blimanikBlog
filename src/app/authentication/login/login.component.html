@@ -1,0 +1,81 @@
+<div class="auth-wrapper auth-v1 px-2">
+  <div class="auth-inner py-2">
+    <!-- Login v1 -->
+    <div class="card mb-0">
+      <div class="card-body">
+        <a href="javascript:void(0);" class="brand-logo">
+          <h2 class="brand-text text-primary ml-1">Sign In, Blimanik Blog</h2>
+        </a>
+
+        <!-- <div class="form-group">
+          <div
+            *ngIf="submitted && isLoginFailed"
+            class="alert alert-danger"
+            role="alert"
+          >
+            Login failed: {{ errorMessage }}
+          </div>
+        </div> -->
+
+        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="submitted && isLoginFailed">
+          <div class="alert-body">
+            Login failed: {{ errorMessage }}
+          </div>
+        </ngb-alert>
+
+        <form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="login-username" class="form-label">Username</label>
+            <input type="text" formControlName="username" class="form-control" placeholder="masukkan username"
+              aria-describedby="login-username" tabindex="1" autofocus
+              [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Username wajib diisi</div>
+              <div *ngIf="f.username.errors.username">
+                Username tidak valid
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="d-flex justify-content-between">
+              <label for="login-password">Password</label>
+              <a routerLink="/authentication/forgot-password">
+                <small>Lupa Password?</small>
+              </a>
+            </div>
+            <div class="input-group input-group-merge form-password-toggle">
+              <input [type]="passwordTextType ? 'text' : 'password'" formControlName="password"
+                class="form-control form-control-merge" tabindex="2" placeholder="·········"
+                aria-describedby="login-password" [ngClass]="{
+                  'is-invalid error': submitted && f.password.errors
+                }" />
+
+              <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"><i class="feather font-small-4" [ngClass]="{
+                      'icon-eye-off': passwordTextType,
+                      'icon-eye': !passwordTextType
+                    }" (click)="togglePasswordTextType()"></i></span>
+              </div>
+            </div>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback"
+              [ngClass]="{ 'd-block': submitted && f.password.errors }">
+              <div *ngIf="f.password.errors.required">Password wajib diisi</div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-relief-primary btn-block" tabindex="4" rippleEffect>
+            Sign in
+          </button>
+        </form>
+
+        <p class="text-center mt-2">
+          <span>Belum punya akun?</span>
+          <a routerLink="/authentication/register">
+            <span>&nbsp;Daftarkan Akun</span>
+          </a>
+        </p>
+      </div>
+    </div>
+    <!-- /Login v1 -->
+  </div>
+</div>

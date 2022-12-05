@@ -3,113 +3,50 @@
     <app-content-header [contentHeader]="contentHeader"></app-content-header>
 
     <section>
-      <div class="card-deck">
-        <div class="card">
-          <img class="card-img-top" src="assets/images/slider/03.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This content
-              is a little bit longer.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="assets/images/slider/02.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="assets/images/slider/01.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This card has
-              even longer content than the first to show that equal height action.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="assets/images/slider/01.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This card has
-              even longer content than the first to show that equal height action.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
+      <div class="row">
+        <div class="col-md-3 col-12 d-flex align-items-stretch" *ngFor="let row of this.rows">
+          <div class="card">
+            <img class="card-img-top" src="{{ 'http://localhost:8080/files/' + row.fileUpload }}"
+              alt="Card image cap" />
+            <div class="card-body align-items-stretch">
+              <h4 class="card-title">{{truncateTitle(row.title)}}</h4>
+              <div class="media">
+                <div class="avatar mr-50">
+                  <img src="assets/images/slider/03.jpg" alt="Avatar" width="24" height="24" />
+                </div>
+                <div class="media-body">
+                  <small class="text-muted mr-25">by</small>
+                  <small><a href="javascript:void(0);" class="text-body">Made Manik</a></small>
+                  <span class="text-muted ml-50 mr-25">|</span>
+                  <small class="text-muted">05 Desember 2022</small>
+                </div>
+              </div>
+              <div class="my-1 py-23">
 
+              </div>
+              <p class="card-text">
+                {{removeTag(row.content) }}
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <a routerLink="/">
+                  <div class="d-flex align-items-center">
+                    <i data-feather="message-square" class="font-medium-1 text-body mr-50"></i>
+                    <span class="text-body font-weight-bold">0 Comments</span>
+                  </div>
+                </a>
+                <a type="button" class="btn btn-relief-primary font-weight-bold" [routerLink]="['/']">Baca
+                  artikel</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="mt-4">
-      <div class="card-deck">
-        <div class="card">
-          <img class="card-img-top" src="assets/images/slider/03.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This content
-              is a little bit longer.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="assets/images/slider/02.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="assets/images/slider/01.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This card has
-              even longer content than the first to show that equal height action.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="assets/images/slider/01.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This card has
-              even longer content than the first to show that equal height action.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
 
-      </div>
     </section>
   </div>
 </div>

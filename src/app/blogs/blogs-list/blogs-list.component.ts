@@ -82,7 +82,7 @@ export class BlogsListComponent implements OnInit {
   onActivate(event) {}
 
   constructor(
-    private _datatablesService: BlogsService,
+    private blogsService: BlogsService,
     private _coreTranslationService: CoreTranslationService,
     private _coreConfigService: CoreConfigService,
     private storageService: StorageService,
@@ -131,10 +131,10 @@ export class BlogsListComponent implements OnInit {
     this.modalService.activeInstances.closed;
 
     if (this.modalFileUpload) {
-      this._datatablesService.removeFile(this.modalFileUpload);
+      this.blogsService.removeFile(this.modalFileUpload);
     }
 
-    this._datatablesService.deleteDataBlog(this.modalId).subscribe({
+    this.blogsService.deleteDataBlog(this.modalId).subscribe({
       next: (res) => {
         this.getAllBlogs();
       },
@@ -145,12 +145,14 @@ export class BlogsListComponent implements OnInit {
   }
 
   getAllBlogs() {
-    this._datatablesService.getDataBlogs().subscribe({
+    this.blogsService.getDataBlogs().subscribe({
       next: (res) => {
         this.rows = res;
         this.tempData = this.rows;
         this.blogskRows = this.rows;
         this.exportCSVData = this.rows;
+
+        console.log(typeof(this.rows));
       },
       error: (err) => {
         alert(err);
@@ -181,8 +183,8 @@ export class BlogsListComponent implements OnInit {
         links: [
           {
             name: "Blogs",
-            isLink: false,
-            link: "/blog",
+            isLink: true,
+            link: "/blogs",
           },
         ],
       },

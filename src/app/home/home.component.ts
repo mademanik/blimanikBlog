@@ -70,11 +70,7 @@ export class HomeComponent implements OnInit {
           {
             name: "Home",
             isLink: true,
-            link: "/",
-          },
-          {
-            name: "Home",
-            isLink: false,
+            link: "/home",
           },
         ],
       },

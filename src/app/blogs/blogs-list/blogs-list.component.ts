@@ -22,7 +22,7 @@ import { locale as english } from "./i18n/en";
 import { locale as french } from "./i18n/fr";
 import { locale as portuguese } from "./i18n/pt";
 
-import { BlogsService } from "../blogs.service";
+import { BlogsService } from "../../_services/blogs.service";
 
 @Component({
   selector: "app-blogs-list",

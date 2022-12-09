@@ -6,6 +6,7 @@ export const locale = {
       SAMPLE: 'Stichprobe',
       BLOG: 'Blogs',
       ADD_BLOG: 'Add Blog',
+      AKUN : 'Akun'
     }
-  }
+  },
 }

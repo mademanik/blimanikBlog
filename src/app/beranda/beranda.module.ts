@@ -8,15 +8,21 @@ import { ContentHeaderModule } from "app/layout/components/content-header/conten
 
 import { BerandaComponent } from "app/beranda/beranda.component";
 
+import { ReadBlogComponent } from "./read-blog/read-blog.component";
+
 const routes: Routes = [
   {
     path: "beranda",
     component: BerandaComponent,
   },
+  {
+    path: "readBlog/:id",
+    component: ReadBlogComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [BerandaComponent],
+  declarations: [BerandaComponent, ReadBlogComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

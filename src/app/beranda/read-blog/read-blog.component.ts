@@ -1,28 +1,32 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { HttpEventType, HttpResponse } from "@angular/common/http";
 
 import { Subject } from "rxjs";
+import { Observable } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 import { CoreConfigService } from "@core/services/config.service";
 
-import { BlogsService } from "../_services/blogs.service";
+import { BlogsService } from "../../_services/blogs.service";
+import { StorageService } from "../../_services/storage.service";
 
 @Component({
-  selector: "beranda",
-  templateUrl: "./beranda.component.html",
-  styleUrls: ["./beranda.component.scss"],
+  selector: "app-read-blog",
+  templateUrl: "./read-blog.component.html",
+  styleUrls: ["./read-blog.component.scss"],
 })
-export class BerandaComponent implements OnInit {
+export class ReadBlogComponent implements OnInit {
+  
   // public
   public contentHeader: object;
   public coreConfig: any;
-  public rows: any;
-  private tempData = [];
-  public blogskRows: any;
-  public exportCSVData;
+  public data: any;
 
   // Private
   private _unsubscribeAll: Subject<any>;
+
+  id: number;
 
   /**
    * Constructor
@@ -30,7 +34,10 @@ export class BerandaComponent implements OnInit {
    * @param {CoreConfigService} _coreConfigService
    */
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private _coreConfigService: CoreConfigService,
+    private storageService: StorageService,
     private blogsService: BlogsService
   ) {
     this._unsubscribeAll = new Subject();
@@ -47,13 +54,7 @@ export class BerandaComponent implements OnInit {
     };
   }
 
-  // Lifecycle Hooks
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * On init
-   */
-  ngOnInit() {
+  ngOnInit(): void {
     // Subscribe to config changes
     this._coreConfigService.config
       .pipe(takeUntil(this._unsubscribeAll))
@@ -61,7 +62,15 @@ export class BerandaComponent implements OnInit {
         this.coreConfig = config;
       });
 
-    this.getAllBlogs();
+      this.id = this.route.snapshot.params["id"];
+
+      this.blogsService.getBlogById(this.id).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.data = res;
+        },
+      });
+      
 
     this.contentHeader = {
       headerTitle: "Beranda",
@@ -77,33 +86,5 @@ export class BerandaComponent implements OnInit {
         ],
       },
     };
-  }
-
-  getAllBlogs() {
-    this.blogsService.getDataBlogs().subscribe({
-      next: (res) => {
-        this.rows = res;
-        this.tempData = this.rows;
-        this.blogskRows = this.rows;
-        this.exportCSVData = this.rows;
-
-        console.log(this.rows);
-        console.log(typeof this.rows);
-      },
-      error: (err) => {
-        alert(err);
-      },
-    });
-  }
-
-  truncateTitle(input) {
-    if (input.length > 30) {
-      return input.substring(0, 55) + "...";
-    }
-    return input;
-  }
-
-  removeTag(input){
-    return input.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 100) + "...";
   }
 }

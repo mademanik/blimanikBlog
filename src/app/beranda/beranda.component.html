@@ -18,7 +18,7 @@
                   <small class="text-muted mr-25">by</small>
                   <small><a href="javascript:void(0);" class="text-body">Made Manik</a></small>
                   <span class="text-muted ml-50 mr-25">|</span>
-                  <small class="text-muted">05 Desember 2022</small>
+                  <small class="text-muted">{{row.createdAt}}</small>
                 </div>
               </div>
               <div class="my-1 py-23">
@@ -36,7 +36,7 @@
                     <span class="text-body font-weight-bold">0 Comments</span>
                   </div>
                 </a>
-                <a type="button" class="btn btn-relief-primary font-weight-bold" [routerLink]="['/']">Baca
+                <a type="button" class="btn btn-relief-primary font-weight-bold" [routerLink]="['/readBlog//', row.id]">Baca
                   artikel</a>
               </div>
             </div>

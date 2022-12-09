@@ -1,0 +1,296 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <!-- account setting page -->
+        <section id="basic-tabs-components">
+            <div class="row match-height">
+                <div class="col-md-12 mb-2 mb-md-0">
+                    <core-card-snippet>
+                        <div class="card-body">
+                            <ul ngbNav #navWithIcons="ngbNav" class="nav-tabs">
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span [data-feather]="'user'"></span> General</a>
+                                    <ng-template ngbNavContent>
+                                        <!-- header media -->
+                                        <div class="media">
+                                            <a href="javascript:void(0);" class="mr-25">
+                                                <img src="http://localhost:4200/assets/images/portrait/small/avatar-s-11.jpg"
+                                                    class="rounded mr-50" alt="profile image" height="76" width="80" />
+                                            </a>
+                                            <!-- upload and reset button -->
+                                            <div class="media-body mt-75 ml-1">
+                                                <button for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75"
+                                                    rippleEffect>
+                                                    Upload
+                                                </button>
+                                                <input type="file" #file id="account-upload" hidden accept="image/*" />
+                                                <button class="btn btn-sm btn-outline-secondary mb-75"
+                                                    rippleEffect>Reset</button>
+                                                <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
+                                            </div>
+                                            <!--/ upload and reset button -->
+                                        </div>
+                                        <!--/ header media -->
+
+                                        <!-- form -->
+                                        <form class="validate-form mt-2">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-username">Username</label>
+                                                        <input type="text" class="form-control" id="account-username"
+                                                            name="username" placeholder="Username" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-name">Name</label>
+                                                        <input type="text" class="form-control" id="account-name"
+                                                            name="name" placeholder="Name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-e-mail">E-mail</label>
+                                                        <input type="email" class="form-control" id="account-e-mail"
+                                                            name="email" placeholder="Email" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-company">Company</label>
+                                                        <input type="text" class="form-control" id="account-company"
+                                                            name="company" placeholder="Company name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-75">
+                                                    <div class="alert alert-warning mb-50" role="alert">
+                                                        <h4 class="alert-heading">Your email is not confirmed. Please
+                                                            check your inbox.</h4>
+                                                        <div class="alert-body">
+                                                            <a href="javascript: void(0);" class="alert-link">Resend
+                                                                confirmation</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary mt-2 mr-1"
+                                                        rippleEffect>Save changes</button>
+                                                    <button type="reset" class="btn btn-outline-secondary mt-2"
+                                                        rippleEffect>Cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!--/ form -->
+                                    </ng-template>
+                                </li>
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span [data-feather]="'lock'"></span> Change Password</a>
+                                    <ng-template ngbNavContent>
+                                        <!-- form -->
+                                        <form class="validate-form">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-old-password">Old Password</label>
+                                                        <div class="input-group form-password-toggle input-group-merge">
+                                                            <input class="form-control" id="account-old-password"
+                                                                name="password" placeholder="Old Password" />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text cursor-pointer"><i
+                                                                        class="feather font-small-4"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-new-password">New Password</label>
+                                                        <div class="input-group form-password-toggle input-group-merge">
+                                                            <input id="account-new-password" name="new-password"
+                                                                class="form-control" placeholder="New Password" />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text cursor-pointer"><i
+                                                                        class="feather font-small-4"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-retype-new-password">Retype New
+                                                            Password</label>
+                                                        <div class="input-group form-password-toggle input-group-merge">
+                                                            <input class="form-control" id="account-retype-new-password"
+                                                                name="confirm-new-password"
+                                                                placeholder="New Password" />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text cursor-pointer"><i
+                                                                        class="feather font-small-4"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary mr-1 mt-1"
+                                                        rippleEffect>Save changes</button>
+                                                    <button type="reset" class="btn btn-outline-secondary mt-1"
+                                                        rippleEffect>Cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!--/ form -->
+                                    </ng-template>
+                                </li>
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span [data-feather]="'info'"></span> Information</a>
+                                    <ng-template ngbNavContent>
+                                        <!-- form -->
+                                        <form class="validate-form">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="accountTextarea">Bio</label>
+                                                        <textarea class="form-control" id="accountTextarea"
+                                                            name="accountTextarea" rows="4"
+                                                            placeholder="Your Bio data here..."></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-birth-date">Birth date</label>
+                                                        <ng2-flatpickr [config]="birthDateOptions"
+                                                            id="account-birth-date" name="account-birth-date"
+                                                            placeholder="June 18, 2021"></ng2-flatpickr>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="accountSelect">Country</label>
+                                                        <select class="form-control" id="accountSelect"
+                                                            name="accountSelect">
+                                                            <option>USA</option>
+                                                            <option>India</option>
+                                                            <option>Canada</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-website">Website</label>
+                                                        <input type="text" class="form-control" name="website"
+                                                            id="account-website" placeholder="Website address" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-phone">Phone</label>
+                                                        <input type="text" class="form-control" id="account-phone"
+                                                            placeholder="Phone number" name="phone" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary mt-1 mr-1"
+                                                        rippleEffect>Save changes</button>
+                                                    <button type="reset" class="btn btn-outline-secondary mt-1"
+                                                        rippleEffect>Cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!--/ form -->
+                                    </ng-template>
+                                </li>
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span [data-feather]="'link'"></span> Sosial</a>
+                                    <ng-template ngbNavContent>
+                                        <!-- form -->
+                                        <form class="validate-form">
+                                            <div class="row">
+                                                <!-- social header -->
+                                                <div class="col-12">
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <i data-feather="link" class="font-medium-3"></i>
+                                                        <h4 class="mb-0 ml-75">Social Links</h4>
+                                                    </div>
+                                                </div>
+                                                <!-- twitter link input -->
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-twitter">Twitter</label>
+                                                        <input type="text" id="account-twitter" name="account-twitter"
+                                                            class="form-control" placeholder="Add link" />
+                                                    </div>
+                                                </div>
+                                                <!-- facebook link input -->
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-facebook">Facebook</label>
+                                                        <input type="text" id="account-facebook" name="account-facebook"
+                                                            class="form-control" placeholder="Add link" />
+                                                    </div>
+                                                </div>
+                                                <!-- google plus input -->
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-google">Google+</label>
+                                                        <input type="text" id="account-google" name="account-google"
+                                                            class="form-control" placeholder="Add link" />
+                                                    </div>
+                                                </div>
+                                                <!-- linkedin link input -->
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-linkedin">LinkedIn</label>
+                                                        <input type="text" id="account-linkedin" name="account-linkedin"
+                                                            class="form-control" placeholder="Add link" />
+                                                    </div>
+                                                </div>
+                                                <!-- instagram link input -->
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-instagram">Instagram</label>
+                                                        <input type="text" id="account-instagram"
+                                                            name="account-instagram" class="form-control"
+                                                            placeholder="Add link" />
+                                                    </div>
+                                                </div>
+                                                <!-- Quora link input -->
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="account-quora">Quora</label>
+                                                        <input type="text" id="account-quora" name="account-quora"
+                                                            class="form-control" placeholder="Add link" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- divider -->
+                                                <div class="col-12">
+                                                    <hr class="my-2" />
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <!-- submit and cancel button -->
+                                                    <button type="submit" class="btn btn-primary mr-1 mt-1"
+                                                        rippleEffect>Save changes</button>
+                                                    <button type="reset" class="btn btn-outline-secondary mt-1"
+                                                        rippleEffect>Cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!--/ form -->
+                                    </ng-template>
+                                </li>
+                            </ul>
+                            <div [ngbNavOutlet]="navWithIcons" class="mt-2"></div>
+                        </div>
+                    </core-card-snippet>
+                </div>
+
+            </div>
+        </section>
+        <!--/ account setting page -->
+    </div>
+</div>

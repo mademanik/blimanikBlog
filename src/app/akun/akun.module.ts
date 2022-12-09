@@ -13,34 +13,20 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { CoreCommonModule } from "@core/common.module";
 import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
 import { ContentHeaderModule } from "app/layout/components/content-header/content-header.module";
-
-import { BlogsListComponent } from "./blogs-list/blogs-list.component";
-import { BlogsService } from "../_services/blogs.service";
-import { AddBlogComponent } from "./add-blog/add-blog.component";
+import { AkunService } from "../_services/akun.service";
+import { AkunDetailComponent } from './akun-detail/akun-detail.component';
 
 const routes: Routes = [
   {
-    path: "blogs",
-    component: BlogsListComponent,
-    resolve: {
-      datatables: BlogsService,
-    },
-    data: { animation: "blogs" },
-  },
-  {
-    path: "addBlog",
-    component: AddBlogComponent,
-    data: { animation: "table" },
-  },
-  {
-    path: "editBlog/:id",
-    component: AddBlogComponent,
-    data: { animation: "table" },
+    path: "akun-detail",
+    component: AkunDetailComponent,
   },
 ];
 
 @NgModule({
-  declarations: [BlogsListComponent, AddBlogComponent],
+  declarations: [
+    AkunDetailComponent
+  ],
   imports: [
     RouterModule.forChild(routes),
     BrowserModule,
@@ -57,6 +43,6 @@ const routes: Routes = [
     CoreCommonModule,
     QuillModule.forRoot(),
   ],
-  providers: [BlogsService],
+  providers: [AkunService],
 })
-export class BlogsModule {}
+export class AkunModule {}

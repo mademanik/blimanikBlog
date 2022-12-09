@@ -1,4 +1,4 @@
-import { BlogsService } from "./../blogs.service";
+import { BlogsService } from "../../_services/blogs.service";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";

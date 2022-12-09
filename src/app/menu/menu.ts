@@ -9,4 +9,12 @@ export const menu: CoreMenu[] = [
     icon: 'image',
     url: 'blogs'
   },
+  {
+    id: 'akun',
+    title: 'Akun',
+    translate: 'MENU.AKUN',
+    type: 'item',
+    icon: 'user',
+    url: 'akun-detail',
+  },
 ]

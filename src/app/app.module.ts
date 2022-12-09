@@ -38,6 +38,7 @@ import { HomeComponent } from "./home/home.component";
 import { BlogsModule } from "./blogs/blogs.module";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { BerandaModule } from "./beranda/beranda.module";
+import { AkunModule } from "./akun/akun.module";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -78,6 +79,7 @@ import { BerandaModule } from "./beranda/beranda.module";
     BlogsModule,
     AuthenticationModule,
     BerandaModule,
+    AkunModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

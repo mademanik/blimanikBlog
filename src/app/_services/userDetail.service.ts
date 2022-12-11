@@ -35,4 +35,18 @@ export class UserDetailService implements Resolve<any> {
       data
     );
   }
+
+  updateUserById(userId: number, data: any) {
+    return this._httpClient.put<any>(
+      `${this.baseUrl}/api/userDetail/user/${userId}`,
+      data
+    );
+  }
+
+  updateUserPasswordById(userId: number, data: any) {
+    return this._httpClient.put<any>(
+      `${this.baseUrl}/api/userDetail/password/${userId}`,
+      data
+    );
+  }
 }

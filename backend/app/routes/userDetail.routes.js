@@ -8,5 +8,9 @@ module.exports = (app) => {
 
   router.put("/:id", userDetail.update);
 
+  router.put("/user/:id", userDetail.updateUser);
+
+  router.put("/password/:id", userDetail.updatePassword);
+
   app.use("/api/userDetail", router);
 };

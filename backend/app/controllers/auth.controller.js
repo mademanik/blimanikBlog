@@ -1,5 +1,6 @@
 const db = require("../models");
 const config = require("../config/auth.config.js");
+const UserDetail = db.userDetail;
 const User = db.user;
 const Role = db.role;
 const Op = db.Sequelize.Op;
@@ -7,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 exports.signup = async (req, res) => {
   // Save User to Database
+  let insertId;
   try {
     const user = await User.create({
       username: req.body.username,
@@ -28,6 +30,11 @@ exports.signup = async (req, res) => {
       const result = user.setRoles([1]);
       if (result) res.send({ message: "User registered successfully!" });
     }
+
+    UserDetail.create({
+      userId: user.id,
+    });
+    
   } catch (error) {
     res.status(500).send({
       message: error.message,

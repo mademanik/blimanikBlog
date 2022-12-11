@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { HttpEventType, HttpResponse } from "@angular/common/http";
 
 import { Subject } from "rxjs";
-import { Observable } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 import { CoreConfigService } from "@core/services/config.service";

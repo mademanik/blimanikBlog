@@ -1,2 +1,4 @@
 # blimanikBlog
- Frontend Blimanik Coding Blog - Angular - JSON Server
+ Frontend => Angular,
+ Backend  => Express JS (Node JS)
+ Blimanik Coding Blog - Angular - JSON Server

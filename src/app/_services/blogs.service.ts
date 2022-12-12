@@ -81,6 +81,24 @@ export class BlogsService implements Resolve<any> {
     return this._httpClient.request(req);
   }
 
+  uploadAvatar(file: File, oriName: string): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append("file", file, oriName);
+
+    const req = new HttpRequest(
+      "POST",
+      `${this.baseUrl}/uploadAvatar`,
+      formData,
+      {
+        reportProgress: true,
+        responseType: "json",
+      }
+    );
+
+    return this._httpClient.request(req);
+  }
+
   getFiles(): Observable<any> {
     return this._httpClient.get(`${this.baseUrl}/files`);
   }

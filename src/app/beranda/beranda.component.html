@@ -1,47 +1,87 @@
 <div class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <app-content-header [contentHeader]="contentHeader"></app-content-header>
-
     <section>
       <div class="row">
-        <div class="col-md-3 col-12 d-flex align-items-stretch" *ngFor="let row of this.rows">
-          <div class="card">
-            <img class="card-img-top" src="{{ 'http://localhost:8080/files/' + row.fileUpload }}"
-              alt="Card image cap" />
-            <div class="card-body align-items-stretch">
-              <h4 class="card-title">{{truncateTitle(row.title)}}</h4>
-              <div class="media">
-                <div class="avatar mr-50">
-                  <img src="assets/images/slider/03.jpg" alt="Avatar" width="24" height="24" />
-                </div>
-                <div class="media-body">
-                  <small class="text-muted mr-25">by</small>
-                  <small><a href="javascript:void(0);" class="text-body">Made Manik</a></small>
-                  <span class="text-muted ml-50 mr-25">|</span>
-                  <small class="text-muted">{{row.createdAt}}</small>
-                </div>
-              </div>
-              <div class="my-1 py-23">
-
-              </div>
-              <p class="card-text">
-                {{removeTag(row.content) }}
-              </p>
+        <div class="col-sm-2">
+          <!-- <div class="card">
+            <button type="button" class="btn btn-outline-primary" rippleEffect>
+              <span [data-feather]="'home'" [class]="'mr-25'"></span>Home</button>
+          </div>-->
+          <div class="sidebar-menu-list">
+            <div class="list-group list-group-messages">
+              <a class="btn btn-relief-primary list-group-item list-group-item-action no-background">
+                <span [data-feather]="'home'" [size]="20" [class]="'mr-75'"></span>
+                <span class="align-middle">Home</span>
+              </a>
+              <a class="btn btn-relief-danger list-group-item list-group-item-action no-background mt-1">
+                <span [data-feather]="'youtube'" [size]="20" [class]="'mr-75'"></span>
+                <span class="align-middle">Youtube</span>
+              </a>
+              <a class="btn btn-relief-warning list-group-item list-group-item-action no-background mt-1">
+                <span [data-feather]="'tag'" [size]="20" [class]="'mr-75'"></span>
+                <span class="align-middle">Tags</span>
+              </a>
+              <a class="btn btn-relief-secondary list-group-item list-group-item-action no-background mt-1">
+                <span [data-feather]="'at-sign'" [size]="20" [class]="'mr-75'"></span>
+                <span class="align-middle">FAQ</span>
+              </a>
+              <a class="btn btn-relief-success list-group-item list-group-item-action no-background mt-1">
+                <span [data-feather]="'phone'" [size]="20" [class]="'mr-75'"></span>
+                <span class="align-middle">Contact</span>
+              </a>
+              <a class="btn btn-relief-info list-group-item list-group-item-action no-background mt-1">
+                <span [data-feather]="'alert-circle'" [size]="20" [class]="'mr-75'"></span>
+                <span class="align-middle">About</span>
+              </a>
             </div>
-            <div class="card-footer">
-              <div class="d-flex justify-content-between align-items-center">
-                <a routerLink="/">
-                  <div class="d-flex align-items-center">
-                    <i data-feather="message-square" class="font-medium-1 text-body mr-50"></i>
-                    <span class="text-body font-weight-bold">0 Comments</span>
+          </div>
+
+        </div>
+        <div class="col-sm-10">
+          <div class="row">
+            <div class="col-md-4 col-12 d-flex align-items-stretch" *ngFor="let row of this.rows">
+              <div class="card">
+                <img class="card-img-top" src="{{ 'http://localhost:8080/files/' + row.fileUpload }}"
+                  alt="Card image cap" />
+                <div class="card-body align-items-stretch">
+                  <h4 class="card-title">{{truncateTitle(row.title)}}</h4>
+                  <div class="media">
+                    <div class="avatar mr-50">
+                      <img src="assets/images/slider/03.jpg" alt="Avatar" width="24" height="24" />
+                    </div>
+                    <div class="media-body">
+                      <small class="text-muted mr-25">by</small>
+                      <small><a href="javascript:void(0);" class="text-body">Made Manik</a></small>
+                      <span class="text-muted ml-50 mr-25">|</span>
+                      <small class="text-muted">{{row.createdAt}}</small>
+                    </div>
                   </div>
-                </a>
-                <a type="button" class="btn btn-relief-primary font-weight-bold" [routerLink]="['/readBlog//', row.id]">Baca
-                  artikel</a>
+                  <div class="my-1 py-23">
+
+                  </div>
+                  <p class="card-text">
+                    {{removeTag(row.content) }}
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <a routerLink="/">
+                      <div class="d-flex align-items-center">
+                        <i data-feather="message-square" class="font-medium-1 text-body mr-50"></i>
+                        <span class="text-body font-weight-bold">0 Comments</span>
+                      </div>
+                    </a>
+                    <a type="button" class="btn btn-relief-primary font-weight-bold"
+                      [routerLink]="['/readBlog//', row.id]">Baca
+                      artikel</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 

@@ -5,9 +5,6 @@ const Op = db.Sequelize.Op;
 const bcrypt = require("bcryptjs");
 
 exports.create = (req, res) => {
-  console.log("incoming request");
-  // console.log(req);
-
   const userDetail = {
     userId: req.body.userId,
     // company: req.body.company,
@@ -39,7 +36,7 @@ exports.findOne = async (req, res) => {
 
   getUserDetails = await db.sequelize
     .query(
-      "select users.id, users.username, users.email, userdetails.company,userdetails.bio ,userdetails.birthDate ,userdetails.country ,userdetails.website ,userdetails.phone, userdetails.twitter ,userdetails.facebook ,userdetails.linkedin , userdetails.instagram from users inner join userdetails on users.id  = userdetails.userId WHERE users.id = :userId",
+      "select users.id, users.username, users.email, userdetails.company,userdetails.bio ,userdetails.birthDate ,userdetails.country ,userdetails.website ,userdetails.phone, userdetails.twitter ,userdetails.facebook ,userdetails.linkedin , userdetails.instagram, userdetails.profile, userdetails.createdAt, userdetails.updatedAt from users inner join userdetails on users.id  = userdetails.userId WHERE users.id = :userId",
       {
         replacements: { userId: userId },
         type: db.sequelize.QueryTypes.SELECT,

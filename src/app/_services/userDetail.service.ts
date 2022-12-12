@@ -26,7 +26,9 @@ export class UserDetailService implements Resolve<any> {
   }
 
   getUserDetailById(userId: number) {
-    return this._httpClient.get<any>(`${this.baseUrl}/api/userDetail/${userId}`);
+    return this._httpClient.get<any>(
+      `${this.baseUrl}/api/userDetail/${userId}`
+    );
   }
 
   updateUserDetailById(userId: number, data: any) {
@@ -48,5 +50,35 @@ export class UserDetailService implements Resolve<any> {
       `${this.baseUrl}/api/userDetail/password/${userId}`,
       data
     );
+  }
+
+  getDefaultAvatar() {
+    return this._httpClient.get<any>(`${this.baseUrl}/files/avatar/avatar.jpg`);
+  }
+
+  removeAvatarFile(filename: string) {
+    this._httpClient
+      .delete("http://localhost:8080/files/avatar/" + filename)
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
+
+  uploadAvatar(file: File, oriName: string): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append("file", file, oriName);
+
+    const req = new HttpRequest(
+      "POST",
+      `${this.baseUrl}/uploadAvatar`,
+      formData,
+      {
+        reportProgress: true,
+        responseType: "json",
+      }
+    );
+
+    return this._httpClient.request(req);
   }
 }

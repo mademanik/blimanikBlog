@@ -8,6 +8,11 @@ let routes = (app) => {
   router.get("/files/:name", contoller.download);
   router.delete("/files/:name", contoller.remove);
 
+  router.post("/uploadAvatar", contoller.uploadAvatar);
+  router.get("/files/avatar/default/:name", contoller.avatarDefault);
+  router.get("/files/avatar/:name", contoller.avatar);
+  router.delete("/files/avatar/:name", contoller.removeAvatar);
+
   app.use(router);
 };
 

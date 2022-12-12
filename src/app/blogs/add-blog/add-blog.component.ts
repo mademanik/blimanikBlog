@@ -4,8 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpEventType, HttpResponse } from "@angular/common/http";
 
-import { Subject } from "rxjs";
-import { Observable } from "rxjs";
+import { Subject, Observable } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 import { CoreConfigService } from "@core/services/config.service";
@@ -73,8 +72,6 @@ export class AddBlogComponent implements OnInit {
     this.selectedFiles = event.target.files;
 
     this.uploadName = event.target.files[0].name;
-
-    console.log(this.uploadName);
 
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);

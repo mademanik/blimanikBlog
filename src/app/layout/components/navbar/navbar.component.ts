@@ -1,29 +1,37 @@
-import { Component, OnDestroy, OnInit, HostBinding, HostListener, ViewEncapsulation } from '@angular/core';
-import { MediaObserver } from '@angular/flex-layout';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  HostBinding,
+  HostListener,
+  ViewEncapsulation,
+} from "@angular/core";
+import { MediaObserver } from "@angular/flex-layout";
 
-import { StorageService } from '../../../_services/storage.service';
-import { AuthService } from '../../../_services/auth.service';
+import { StorageService } from "../../../_services/storage.service";
+import { AuthService } from "../../../_services/auth.service";
+import { UserDetailService } from "../../../_services/userDetail.service";
 
-import * as _ from 'lodash';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
+import * as _ from "lodash";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { TranslateService } from "@ngx-translate/core";
 
-import { AuthenticationService } from 'app/auth/service';
-import { CoreSidebarService } from '@core/components/core-sidebar/core-sidebar.service';
-import { CoreConfigService } from '@core/services/config.service';
-import { CoreMediaService } from '@core/services/media.service';
+import { AuthenticationService } from "app/auth/service";
+import { CoreSidebarService } from "@core/components/core-sidebar/core-sidebar.service";
+import { CoreConfigService } from "@core/services/config.service";
+import { CoreMediaService } from "@core/services/media.service";
 
-import { User } from 'app/auth/models';
+import { User } from "app/auth/models";
 
-import { coreConfig } from 'app/app-config';
-import { Router } from '@angular/router';
+import { coreConfig } from "app/app-config";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  selector: "app-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   public horizontalMenu: boolean;
@@ -36,23 +44,28 @@ export class NavbarComponent implements OnInit, OnDestroy {
   // public currentUser: User;
   currentUser: any;
 
+  public avatarImage: string;
+  private _baseUrl: string = "http://localhost:8080";
+
   public languageOptions: any;
   public navigation: any;
   public selectedLanguage: any;
 
-  @HostBinding('class.fixed-top')
+  @HostBinding("class.fixed-top")
   public isFixed = false;
 
-  @HostBinding('class.navbar-static-style-on-scroll')
+  @HostBinding("class.navbar-static-style-on-scroll")
   public windowScrolled = false;
 
   // Add .navbar-static-style-on-scroll on scroll using HostListener & HostBinding
-  @HostListener('window:scroll', [])
+  @HostListener("window:scroll", [])
   onWindowScroll() {
     if (
-      (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) &&
-      this.coreConfig.layout.navbar.type == 'navbar-static-top' &&
-      this.coreConfig.layout.type == 'horizontal'
+      (window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop > 100) &&
+      this.coreConfig.layout.navbar.type == "navbar-static-top" &&
+      this.coreConfig.layout.type == "horizontal"
     ) {
       this.windowScrolled = true;
     } else if (
@@ -88,26 +101,27 @@ export class NavbarComponent implements OnInit, OnDestroy {
     public _translateService: TranslateService,
     private storageService: StorageService,
     private authService: AuthService,
+    private userDetailService: UserDetailService
   ) {
     // this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
 
     this.languageOptions = {
       en: {
-        title: 'English',
-        flag: 'us'
+        title: "English",
+        flag: "us",
       },
       fr: {
-        title: 'French',
-        flag: 'fr'
+        title: "French",
+        flag: "fr",
       },
       de: {
-        title: 'German',
-        flag: 'de'
+        title: "German",
+        flag: "de",
       },
       pt: {
-        title: 'Portuguese',
-        flag: 'pt'
-      }
+        title: "Portuguese",
+        flag: "pt",
+      },
     };
 
     // Set the private defaults
@@ -138,7 +152,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // Use the selected language id for translations
     this._translateService.use(language);
 
-    this._coreConfigService.setConfig({ app: { appLanguage: language } }, { emitEvent: true });
+    this._coreConfigService.setConfig(
+      { app: { appLanguage: language } },
+      { emitEvent: true }
+    );
   }
 
   /**
@@ -149,21 +166,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this._coreConfigService
       .getConfig()
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(config => {
+      .subscribe((config) => {
         this.currentSkin = config.layout.skin;
       });
 
     // Toggle Dark skin with prevSkin skin
-    this.prevSkin = localStorage.getItem('prevSkin');
+    this.prevSkin = localStorage.getItem("prevSkin");
 
-    if (this.currentSkin === 'dark') {
+    if (this.currentSkin === "dark") {
       this._coreConfigService.setConfig(
-        { layout: { skin: this.prevSkin ? this.prevSkin : 'default' } },
+        { layout: { skin: this.prevSkin ? this.prevSkin : "default" } },
         { emitEvent: true }
       );
     } else {
-      localStorage.setItem('prevSkin', this.currentSkin);
-      this._coreConfigService.setConfig({ layout: { skin: 'dark' } }, { emitEvent: true });
+      localStorage.setItem("prevSkin", this.currentSkin);
+      this._coreConfigService.setConfig(
+        { layout: { skin: "dark" } },
+        { emitEvent: true }
+      );
     }
   }
 
@@ -183,7 +203,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       },
     });
 
-    this._router.navigate(['authentication/login']);
+    this._router.navigate(["authentication/login"]);
   }
 
   // Lifecycle Hooks
@@ -195,44 +215,50 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // get the currentUser details from localStorage
     // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.currentUser = this.storageService.getUser();
 
-    console.log(this.currentUser.username);
+    this.currentUser = this.storageService.getUser();
+    // console.log(this.currentUser);
+
+    this.getUserDetailById(this.currentUser.id);
     
 
     // Subscribe to the config changes
-    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-      this.coreConfig = config;
-      this.horizontalMenu = config.layout.type === 'horizontal';
-      this.hiddenMenu = config.layout.menu.hidden === true;
-      this.currentSkin = config.layout.skin;
+    this._coreConfigService.config
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((config) => {
+        this.coreConfig = config;
+        this.horizontalMenu = config.layout.type === "horizontal";
+        this.hiddenMenu = config.layout.menu.hidden === true;
+        this.currentSkin = config.layout.skin;
 
-      // Fix: for vertical layout if default navbar fixed-top than set isFixed = true
-      if (this.coreConfig.layout.type === 'vertical') {
-        setTimeout(() => {
-          if (this.coreConfig.layout.navbar.type === 'fixed-top') {
-            this.isFixed = true;
-          }
-        }, 0);
-      }
-    });
-
-    // Horizontal Layout Only: Add class fixed-top to navbar below large screen
-    if (this.coreConfig.layout.type == 'horizontal') {
-      // On every media(screen) change
-      this._coreMediaService.onMediaUpdate.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
-        const isFixedTop = this._mediaObserver.isActive('bs-gt-xl');
-        if (isFixedTop) {
-          this.isFixed = false;
-        } else {
-          this.isFixed = true;
+        // Fix: for vertical layout if default navbar fixed-top than set isFixed = true
+        if (this.coreConfig.layout.type === "vertical") {
+          setTimeout(() => {
+            if (this.coreConfig.layout.navbar.type === "fixed-top") {
+              this.isFixed = true;
+            }
+          }, 0);
         }
       });
+
+    // Horizontal Layout Only: Add class fixed-top to navbar below large screen
+    if (this.coreConfig.layout.type == "horizontal") {
+      // On every media(screen) change
+      this._coreMediaService.onMediaUpdate
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe(() => {
+          const isFixedTop = this._mediaObserver.isActive("bs-gt-xl");
+          if (isFixedTop) {
+            this.isFixed = false;
+          } else {
+            this.isFixed = true;
+          }
+        });
     }
 
     // Set the selected language from default languageOptions
     this.selectedLanguage = _.find(this.languageOptions, {
-      id: this._translateService.currentLang
+      id: this._translateService.currentLang,
     });
   }
 
@@ -243,5 +269,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
+  }
+
+  getUserDetailById(id: number) {
+    this.userDetailService.getUserDetailById(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        if (res[0].profile) {
+          this.avatarImage = `${this._baseUrl}/files/avatar/${res[0].profile}`;
+        } else {
+          this.avatarImage = `${this._baseUrl}/files/avatar/default/avatar.jpg`;
+        }
+      },
+      error: (err) => {
+        // alert(err);
+      },
+    });
   }
 }

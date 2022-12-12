@@ -34,21 +34,9 @@
     <!--/ Toggle skin -->
 
     <ul class="nav navbar-nav align-items-center ml-auto">
-      <li class="nav-item dropdown dropdown-language">
+      <li class="nav-item dropdown dropdown-language" *ngIf="this.currentUser.username">
         <a class="nav-link ml-2" style="font-weight: 500;" [routerLink]="['/beranda']">
           <span>Beranda</span></a>
-      </li>
-      <li ngbDropdown class="nav-item dropdown dropdown-language">
-        <a class="nav-link dropdown-toggle" id="dropdown-flag" ngbDropdownToggle>
-          <span class="selected-language">Coding</span></a>
-        <div ngbDropdownMenu aria-labelledby="dropdown-flag">
-          <a ngbDropdownItem>
-            Java
-          </a>
-          <a ngbDropdownItem>
-            Javascript
-          </a>
-        </div>
       </li>
     </ul>
 
@@ -70,8 +58,8 @@
           <span class="user-name font-weight-bolder">{{ currentUser.username }}</span><span class="user-status">{{
             currentUser.email }}</span>
         </div>
-        <span class="avatar"><img class="round" src="../../../../assets/images/portrait/small/avatar-s-11.jpg"
-            alt="avatar" height="40" width="40" /><span class="avatar-status-online"></span></span>
+        <span class="avatar"><img class="round" [src]="avatarImage" alt="avatar" height="40" width="40" /><span
+            class="avatar-status-online"></span></span>
       </a>
       <div ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-right">
         <a ngbDropdownItem [routerLink]="['/home']"><span [data-feather]="'settings'" [class]="'mr-50'"></span>

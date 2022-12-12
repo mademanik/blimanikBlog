@@ -16,6 +16,8 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { CoreCommonModule } from "@core/common.module";
 import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
 import { ContentHeaderModule } from "app/layout/components/content-header/content-header.module";
+import { Ng2FlatpickrModule } from "ng2-flatpickr";
+
 import { AkunService } from "../_services/akun.service";
 import { AkunDetailComponent } from "./akun-detail/akun-detail.component";
 
@@ -47,6 +49,7 @@ const routes: Routes = [
     CardSnippetModule,
     CoreCommonModule,
     QuillModule.forRoot(),
+    Ng2FlatpickrModule,
   ],
   providers: [AkunService],
 })

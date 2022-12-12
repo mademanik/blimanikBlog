@@ -1,4 +1,5 @@
 const uploadFile = require("../middleware/upload");
+const uploadFileAvatar = require("../middleware/uploadAvatar");
 const fs = require("fs");
 const baseUrl = "http://localhost:8080/files/";
 
@@ -28,6 +29,37 @@ const upload = async (req, res) => {
 
     res.status(500).send({
       message: `Could not upload the file: ${req.file.originalname}. ${err}`,
+    });
+  }
+};
+
+const uploadAvatar = async (req, res) => {
+  console.log("incoming request");
+  try {
+    await uploadFileAvatar(req, res);
+
+    console.log(req.file.filename);
+
+    if (req.file == undefined) {
+      return res.status(400).send({
+        message: "Please upload an avatar file!",
+      });
+    }
+
+    res.status(200).send({
+      message: "Uploaded the avatar file successfully: " + req.file.filename,
+    });
+  } catch (err) {
+    console.log(err);
+
+    if (err.code == "LIMIT_FILE_SIZE") {
+      return res.status(500).send({
+        message: "Avatar file size cannot be larger than 1MB!",
+      });
+    }
+
+    res.status(500).send({
+      message: `Could not upload the avatar file: ${req.file.originalname}. ${err}`,
     });
   }
 };
@@ -67,6 +99,31 @@ const download = (req, res) => {
   });
 };
 
+const avatar = (req, res) => {
+  const fileName = req.params.name;
+  const directoryPath = __basedir + "/resources/static/assets/uploads/profil/";
+  res.download(directoryPath + fileName, fileName, (err) => {
+    if (err) {
+      res.status(500).send({
+        message: "Could not download the file. " + err,
+      });
+    }
+  });
+};
+
+const avatarDefault = (req, res) => {
+  const fileName = req.params.name;
+  const directoryPath =
+    __basedir + "/resources/static/assets/uploads/profil/default/";
+  res.download(directoryPath + fileName, fileName, (err) => {
+    if (err) {
+      res.status(500).send({
+        message: "Could not download the file. " + err,
+      });
+    }
+  });
+};
+
 const remove = (req, res) => {
   const fileName = req.params.name;
   const directoryPath = __basedir + "/resources/static/assets/uploads/";
@@ -80,6 +137,23 @@ const remove = (req, res) => {
 
     res.status(200).send({
       message: "File is deleted.",
+    });
+  });
+};
+
+const removeAvatar = (req, res) => {
+  const fileName = req.params.name;
+  const directoryPath = __basedir + "/resources/static/assets/uploads/profil/";
+
+  fs.unlink(directoryPath + fileName, (err) => {
+    if (err) {
+      res.status(500).send({
+        message: "Could not delete the avatar file. " + err,
+      });
+    }
+
+    res.status(200).send({
+      message: "Avatar file is deleted.",
     });
   });
 };
@@ -106,4 +180,8 @@ module.exports = {
   download,
   remove,
   removeSync,
+  avatar,
+  avatarDefault,
+  uploadAvatar,
+  removeAvatar,
 };

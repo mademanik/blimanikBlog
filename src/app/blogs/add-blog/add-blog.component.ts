@@ -154,6 +154,11 @@ export class AddBlogComponent implements OnInit {
         if (this.uploadName) {
           this.upload();
         }
+
+        if (this.currentUser.id) {
+          this.blogForm.get("creatorId").setValue(this.currentUser.id);
+        }
+
         this.api.addBlogs(this.blogForm.value).subscribe({
           next: (res) => {
             this.blogForm.reset();
@@ -170,9 +175,6 @@ export class AddBlogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    console.log("this.fileDownload : " +this.fileDownload);
-    
     // Subscribe to config changes
     this._coreConfigService.config
       .pipe(takeUntil(this._unsubscribeAll))
@@ -193,6 +195,7 @@ export class AddBlogComponent implements OnInit {
       slug: ["", Validators.required],
       status: ["draft", Validators.required],
       fileUpload: [""],
+      creatorId: [""],
     });
 
     if (this.id) {
@@ -205,7 +208,7 @@ export class AddBlogComponent implements OnInit {
 
           if (res.fileUpload) {
             this.fileDownload = `http://localhost:8080/files/${res.fileUpload}`;
-            this.fileNameDb = res.fileUpload; 
+            this.fileNameDb = res.fileUpload;
           }
         },
       });

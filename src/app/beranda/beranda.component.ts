@@ -97,13 +97,13 @@ export class BerandaComponent implements OnInit {
   }
 
   truncateTitle(input) {
-    if (input.length > 30) {
-      return input.substring(0, 55) + "...";
+    if (input.length > 60) {
+      return input.substring(0, 60) + "...";
     }
     return input;
   }
 
   removeTag(input){
-    return input.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 100) + "...";
+    return input.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 125) + "...";
   }
 }

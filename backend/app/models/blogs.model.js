@@ -18,6 +18,9 @@ module.exports = (sequelize, Sequelize) => {
       fileUpload: {
         type: Sequelize.STRING,
       },
+      creatorId: {
+        type: Sequelize.INTEGER,
+      },
     });
   
     return Blogs;

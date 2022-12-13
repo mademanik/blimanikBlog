@@ -60,7 +60,7 @@ export class AddBlogComponent implements OnInit {
           hidden: false,
         },
         customizer: false,
-        enableLocalStorage: false,
+        enableLocalStorage: true,
       },
     };
   }

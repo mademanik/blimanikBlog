@@ -220,7 +220,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // console.log(this.currentUser);
 
     this.getUserDetailById(this.currentUser.id);
-    
 
     // Subscribe to the config changes
     this._coreConfigService.config
@@ -274,11 +273,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   getUserDetailById(id: number) {
     this.userDetailService.getUserDetailById(id).subscribe({
       next: (res) => {
-        console.log(res);
-        if (res[0].profile) {
-          this.avatarImage = `${this._baseUrl}/files/avatar/${res[0].profile}`;
-        } else {
-          this.avatarImage = `${this._baseUrl}/files/avatar/default/avatar.jpg`;
+        // console.log(res);
+        if (res) {
+          if (res[0].profile) {
+            this.avatarImage = `${this._baseUrl}/files/avatar/${res[0].profile}`;
+          } else {
+            this.avatarImage = `${this._baseUrl}/files/avatar/default/avatar.jpg`;
+          }
         }
       },
       error: (err) => {

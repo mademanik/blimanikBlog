@@ -11,8 +11,8 @@ exports.create = (req, res) => {
     category: req.body.category,
     slug: req.body.slug,
     status: req.body.status,
-    fileUpload : req.body.fileUpload,
-    creatorId : req.body.creatorId,
+    fileUpload: req.body.fileUpload,
+    creatorId: req.body.creatorId,
   };
 
   // Save Blogs in the database
@@ -28,8 +28,23 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Blogs from database
-exports.findAll = (req, res) => {
-  Blogs.findAll()
+exports.findAll = async (req, res) => {
+  // Blogs.findAll()
+  //   .then((data) => {
+  //     res.send(data);
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).send({
+  //       message: err.message || "Some error occured while retrieving the Blogs",
+  //     });
+  //   });
+  getAllBlogs = await db.sequelize
+    .query(
+      "select blogs.*,users.username, users.email,userdetails.profile from blogs left join users on users.id = blogs.creatorId left join userdetails on userdetails.userId = blogs.creatorId",
+      {
+        type: db.sequelize.QueryTypes.SELECT,
+      }
+    )
     .then((data) => {
       res.send(data);
     })
@@ -41,22 +56,30 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Blogs with an id
-exports.findOne = (req, res) => {
-  const id = req.params.id;
+exports.findOne = async (req, res) => {
+  const blogId = req.params.id;
 
-  Blogs.findByPk(id)
+  // Blogs.findByPk(id)
+  getBlogById = await db.sequelize
+    .query(
+      "select blogs.*,users.username, users.email,userdetails.profile from blogs left join users on users.id = blogs.creatorId left join userdetails on userdetails.userId = blogs.creatorId WHERE blogs.id = :id",
+      {
+        replacements: { id: blogId },
+        type: db.sequelize.QueryTypes.SELECT,
+      }
+    )
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Blogs with id=${id}`,
+          message: `Cannot find Blogs with id=${blogId}`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Blogs with id=" + id,
+        message: "Error retrieving Blogs with id=" + blogId,
       });
     });
 };

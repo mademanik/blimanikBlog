@@ -6,51 +6,60 @@
         <div class="col-sm-2">
           <div class="sidebar-menu-list">
             <div class="list-group list-group-messages">
-              <a class="btn btn-relief-primary list-group-item list-group-item-action no-background">
+              <a class="btn btn-relief-primary list-group-item list-group-item-action no-background"
+                [routerLink]="['/beranda']">
                 <span [data-feather]="'home'" [size]="20" [class]="'mr-75'"></span>
                 <span class="align-middle">Home</span>
               </a>
-              <a class="btn btn-relief-danger list-group-item list-group-item-action no-background mt-1">
+              <a class="btn btn-relief-danger list-group-item list-group-item-action no-background mt-1"
+                [routerLink]="['/']">
                 <span [data-feather]="'youtube'" [size]="20" [class]="'mr-75'"></span>
                 <span class="align-middle">Youtube</span>
               </a>
-              <a class="btn btn-relief-warning list-group-item list-group-item-action no-background mt-1">
+              <a class="btn btn-relief-warning list-group-item list-group-item-action no-background mt-1"
+                [routerLink]="['/']">
                 <span [data-feather]="'tag'" [size]="20" [class]="'mr-75'"></span>
                 <span class="align-middle">Tags</span>
               </a>
-              <a class="btn btn-relief-secondary list-group-item list-group-item-action no-background mt-1">
+              <a class="btn btn-relief-secondary list-group-item list-group-item-action no-background mt-1"
+                [routerLink]="['/']">
                 <span [data-feather]="'at-sign'" [size]="20" [class]="'mr-75'"></span>
                 <span class="align-middle">FAQ</span>
               </a>
-              <a class="btn btn-relief-success list-group-item list-group-item-action no-background mt-1">
+              <a class="btn btn-relief-success list-group-item list-group-item-action no-background mt-1"
+                [routerLink]="['/']">
                 <span [data-feather]="'phone'" [size]="20" [class]="'mr-75'"></span>
                 <span class="align-middle">Contact</span>
               </a>
-              <a class="btn btn-relief-info list-group-item list-group-item-action no-background mt-1">
+              <a class="btn btn-relief-info list-group-item list-group-item-action no-background mt-1"
+                [routerLink]="['/']">
                 <span [data-feather]="'alert-circle'" [size]="20" [class]="'mr-75'"></span>
                 <span class="align-middle">About</span>
               </a>
             </div>
           </div>
-
         </div>
         <div class="col-sm-10">
           <div class="row">
             <div class="col-md-4 col-12 d-flex align-items-stretch" *ngFor="let row of this.rows">
               <div class="card">
-                <img class="card-img-top" src="{{ 'http://localhost:8080/files/' + row.fileUpload }}"
-                  alt="Card image cap" />
+                <img class="card-img-top" src="{{ _baseUrl + '/files/' + row.fileUpload }}" alt="Card image cap" />
                 <div class="card-body align-items-stretch">
                   <h4 class="card-title">{{truncateTitle(row.title)}}</h4>
                   <div class="media">
                     <div class="avatar mr-50">
-                      <img src="assets/images/slider/03.jpg" alt="Avatar" width="24" height="24" />
+                      <div *ngIf="row.profile; then thenBlock else elseBlock"></div>
+                      <ng-template #thenBlock><img src="{{ _baseUrl + '/files/avatar/' + row.profile }}" alt="Avatar"
+                          width="24" height="24" /></ng-template>
+                      <ng-template #elseBlock><img src="{{ _baseUrl + '/files/avatar/default/avatar.jpg' }}"
+                          alt="Avatar" width="24" height="24" /></ng-template>
+
                     </div>
                     <div class="media-body">
                       <small class="text-muted mr-25">by</small>
-                      <small><a href="javascript:void(0);" class="text-body">Made Manik</a></small>
+                      <small><a href="javascript:void(0);" class="text-body">{{row.username}}</a></small>
                       <span class="text-muted ml-50 mr-25">|</span>
-                      <small class="text-muted">{{row.createdAt}}</small>
+                      <small class="text-muted">{{ setMoment(row.createdAt)}}</small>
                     </div>
                   </div>
                   <div class="my-1 py-23">
@@ -69,7 +78,7 @@
                       </div>
                     </a>
                     <a type="button" class="btn btn-relief-primary font-weight-bold"
-                      [routerLink]="['/readBlog//', row.id]">Baca
+                      [routerLink]="['/readBlog/', row.id]">Baca
                       artikel</a>
                   </div>
                 </div>

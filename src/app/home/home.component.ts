@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
           hidden: false,
         },
         customizer: false,
-        enableLocalStorage: false,
+        enableLocalStorage: true,
       },
     };
   }
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
 
     this.contentHeader = {
       headerTitle: "Home",
-      actionButton: true,
+      actionButton: false,
       breadcrumb: {
         type: "",
         links: [

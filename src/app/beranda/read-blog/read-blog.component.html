@@ -3,181 +3,210 @@
         <app-content-header [contentHeader]="contentHeader"></app-content-header>
 
         <section>
-
-            <div class="content-detached content-left">
-                <div class="content-body">
-                    <!-- Blog List -->
-                    <div class="blog-list-wrapper">
-                        <!-- Blog List Items -->
-                        <div class="row">
-                            <div class="col-md-12 col-12">
-                                <div class="card">
-                                    <a routerLink="/">
-                                        <img src="{{ 'http://localhost:8080/files/' + data.fileUpload }}"
-                                            class="card-img-top img-fluid" alt="Blog Post pic" />
-                                    </a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a routerLink="/" class="blog-title-truncate text-body-heading">{{data.title}}</a>
-                                        </h4>
-                                        <div class="media">
-                                            <div class="avatar mr-50">
-                                                <img src="http://localhost:4200/assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="24" height="24" />
-                                            </div>
-                                            <div class="media-body">
-                                                <small class="text-muted mr-25">by</small>
-                                                <small><a href="javascript:void(0);" class="text-body">Made Manik</a></small>
-                                                <span class="text-muted ml-50 mr-25">|</span>
-                                                <small class="text-muted">{{data.createdAt}}</small>
-                                            </div>
-                                        </div>
-                                        <div class="my-1 py-25">
-                                            <a href="javascript:void(0);">
-                                                <div class="badge badge-pill mr-50">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <p class="card-text mb-2" [innerHTML]="data.content"></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Blog Comment -->
-                            <div class="col-12 mt-1" id="blogComment">
-                                <h6 class="section-label mt-25">Comment</h6>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="avatar mr-75">
-                                                <img width="38" height="38" alt="Avatar" />
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="font-weight-bolder mb-25">Lorem ipsum dolor sit amet.</h6>
-                                                <p class="card-text">Lorem ipsum dolor sit amet.</p>
-                                                <p class="card-text">Lorem ipsum dolor sit amet.</p>
-                                                <a href="javascript:void(0);">
-                                                    <div class="d-inline-flex align-items-center">
-                                                        <i data-feather="corner-up-left"
-                                                            class="font-medium-3 mr-50"></i>
-                                                        <span>Reply</span>
-                                                    </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="sidebar-menu-list">
+                        <div class="list-group list-group-messages">
+                            <a class="btn btn-relief-primary list-group-item list-group-item-action"
+                                [routerLink]="['/beranda']">
+                                <span [data-feather]="'home'" [size]="20" [class]="'mr-75'"></span>
+                                <span class="align-middle">Home</span>
+                            </a>
+                            <a class="btn btn-relief-danger list-group-item list-group-item-action mt-1"
+                                [routerLink]="['/']">
+                                <span [data-feather]="'youtube'" [size]="20" [class]="'mr-75'"></span>
+                                <span class="align-middle">Youtube</span>
+                            </a>
+                            <a class="btn btn-relief-warning list-group-item list-group-item-action mt-1"
+                                [routerLink]="['/']">
+                                <span [data-feather]="'tag'" [size]="20" [class]="'mr-75'"></span>
+                                <span class="align-middle">Tags</span>
+                            </a>
+                            <a class="btn btn-relief-secondary list-group-item list-group-item-action mt-1"
+                                [routerLink]="['/']">
+                                <span [data-feather]="'at-sign'" [size]="20" [class]="'mr-75'"></span>
+                                <span class="align-middle">FAQ</span>
+                            </a>
+                            <a class="btn btn-relief-success list-group-item list-group-item-action mt-1"
+                                [routerLink]="['/']">
+                                <span [data-feather]="'phone'" [size]="20" [class]="'mr-75'"></span>
+                                <span class="align-middle">Contact</span>
+                            </a>
+                            <a class="btn btn-relief-info list-group-item list-group-item-action mt-1"
+                                [routerLink]="['/']">
+                                <span [data-feather]="'alert-circle'" [size]="20" [class]="'mr-75'"></span>
+                                <span class="align-middle">About</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="content-detached content-left">
+                            <div class="content-body">
+                                <!-- Blog List -->
+                                <div class="blog-list-wrapper">
+                                    <!-- Blog List Items -->
+                                    <div class="row">
+                                        <div class="col-md-12 col-12">
+                                            <div class="card">
+                                                <a routerLink="/">
+                                                    <img src="{{ 'http://localhost:8080/files/' + data.fileUpload }}"
+                                                        class="card-img-top img-fluid" alt="Blog Post pic" />
                                                 </a>
+                                                <div class="card-body">
+                                                    <h4 class="card-title">
+                                                        <a routerLink="/"
+                                                            class="blog-title-truncate text-body-heading">{{data.title}}</a>
+                                                    </h4>
+                                                    <div class="media">
+                                                        <div class="avatar mr-50">
+                                                            <div *ngIf="data.profile; then thenBlock else elseBlock">
+                                                            </div>
+                                                            <ng-template #thenBlock><img
+                                                                    src="{{ _baseUrl + '/files/avatar/' + data.profile }}"
+                                                                    alt="Avatar" width="24" height="24" /></ng-template>
+                                                            <ng-template #elseBlock><img
+                                                                    src="{{ _baseUrl + '/files/avatar/default/avatar.jpg' }}"
+                                                                    alt="Avatar" width="24" height="24" /></ng-template>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <small class="text-muted mr-25">by</small>
+                                                            <small><a href="javascript:void(0);"
+                                                                    class="text-body">{{data.username}}</a></small>
+                                                            <span class="text-muted ml-50 mr-25">|</span>
+                                                            <small class="text-muted">{{
+                                                                setMoment(data.createdAt)}}</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="my-1 py-25">
+                                                        <a href="javascript:void(0);">
+                                                            <div class="badge badge-pill mr-50">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <p class="card-text mb-2" [innerHTML]="data.content"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Blog Comment -->
+                                        <div class="col-12 mt-1" id="blogComment">
+                                            <h6 class="section-label mt-25">Comment</h6>
+                                            <div class="card" *ngFor="let comment of this.comments">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="avatar mr-75">
+                                                            <img width="38"
+                                                                src="{{ _baseUrl + '/files/avatar/default/avatar.jpg' }}"
+                                                                height="38" alt="Avatar" />
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="font-weight-bolder mb-25">{{comment.name}}</h6>
+                                                            <p class="card-text">{{ setMoment(comment.createdAt)}}</p>
+                                                            <p class="card-text">{{comment.comment}}</p>
+                                                            <!-- <a href="javascript:void(0);">
+                                                                <div class="d-inline-flex align-items-center">
+                                                                    <i data-feather="corner-up-left"
+                                                                        class="font-medium-3 mr-50"></i>
+                                                                    <span>Reply</span>
+                                                                </div>
+                                                            </a> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/ Blog Comment -->
+
+                                        <!-- Leave a Blog Comment -->
+                                        <div class="col-12 mt-1">
+                                            <h6 class="section-label mt-25">Leave a Comment</h6>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <form [formGroup]="addCommentForm" (ngSubmit)="onSubmit()"
+                                                        class="mt-2">
+                                                        <div class="row">
+                                                            <div class="col-sm-6 col-12">
+                                                                <div class="form-group mb-2">
+                                                                    <input type="text" class="form-control"
+                                                                        formControlName="name" placeholder="Name"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 col-12">
+                                                                <div class="form-group mb-2">
+                                                                    <input type="email" class="form-control"
+                                                                        formControlName="email" placeholder="Email"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <textarea class="form-control mb-2" rows="4"
+                                                                    formControlName="comment"
+                                                                    placeholder="Comment"></textarea>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    rippleEffect>Post
+                                                                    Comment</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/ Leave a Blog Comment -->
+                                    </div>
+                                    <!--/ Blog List Items -->
+                                </div>
+                                <!--/ Blog List -->
+                            </div>
+                        </div>
+                        <div class="sidebar-detached sidebar-right">
+                            <div class="sidebar">
+                                <div class="blog-sidebar my-2 my-lg-0">
+                                    <!-- Search bar -->
+                                    <div class="blog-search">
+                                        <div class="input-group input-group-merge">
+                                            <input type="text" class="form-control" placeholder="Search here" />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text cursor-pointer">
+                                                    <i data-feather="search"></i>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!--/ Blog Comment -->
+                                    <!--/ Search bar -->
 
-                            <!-- Leave a Blog Comment -->
-                            <div class="col-12 mt-1">
-                                <h6 class="section-label mt-25">Leave a Comment</h6>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form action="javascript:void(0);" class="form">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-12">
-                                                    <div class="form-group mb-2">
-                                                        <input type="text" class="form-control" placeholder="Name" />
-                                                    </div>
+                                    <!-- Recent Posts -->
+                                    <div class="blog-recent-posts mt-3">
+                                        <h6 class="section-label">Recent Posts</h6>
+                                        <div class="mt-75" *ngFor="let row of this.rows">
+                                            <div class="media mb-2">
+                                                <a [routerLink]="['/readBlog/', row.id]" class="mr-2">
+                                                    <img class="rounded"
+                                                        src="{{ _baseUrl + '/files/' + row.fileUpload }}" width="100"
+                                                        height="70" alt="Recent Post Pic" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h6 class="blog-recent-post-title">
+                                                        <a [routerLink]="['/readBlog/', row.id]"
+                                                            class="text-body-heading">{{truncateTitle(row.title)}}</a>
+                                                    </h6>
+                                                    <div class="text-muted mb-0">{{removeTag(row.content)}}</div>
                                                 </div>
-                                                <div class="col-sm-6 col-12">
-                                                    <div class="form-group mb-2">
-                                                        <input type="email" class="form-control" placeholder="Email" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6 col-12">
-                                                    <div class="form-group mb-2">
-                                                        <input type="url" class="form-control" placeholder="Website" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <textarea class="form-control mb-2" rows="4"
-                                                        placeholder="Comment"></textarea>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="custom-control custom-checkbox mb-2">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="blogCheckbox" />
-                                                        <label class="custom-control-label" for="blogCheckbox">Save my
-                                                            name, email, and website in this browser for the next time I
-                                                            comment.</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary" rippleEffect>Post
-                                                        Comment</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/ Leave a Blog Comment -->
-                        </div>
-                        <!--/ Blog List Items -->
-                    </div>
-                    <!--/ Blog List -->
-                </div>
-            </div>
-            <div class="sidebar-detached sidebar-right">
-                <div class="sidebar">
-                    <div class="blog-sidebar my-2 my-lg-0">
-                        <!-- Search bar -->
-                        <div class="blog-search">
-                            <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Search here" />
-                                <div class="input-group-append">
-                                    <span class="input-group-text cursor-pointer">
-                                        <i data-feather="search"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Search bar -->
-
-                        <!-- Recent Posts -->
-                        <div class="blog-recent-posts mt-3">
-                            <h6 class="section-label">Recent Posts</h6>
-                            <div class="mt-75">
-                                <div class="media mb-2">
-                                    <a routerLink="" class="mr-2">
-                                        <img class="rounded" [src]="" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a routerLink="/" class="text-body-heading">Lorem ipsum dolor sit amet.</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Lorem ipsum dolor sit amet.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Recent Posts -->
-
-                        <!-- Categories -->
-                        <div class="blog-categories mt-3">
-                            <h6 class="section-label">Categories</h6>
-                            <div class="mt-1">
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-primary rounded"
-                                            class="avatar bg-light-primary rounded">
-                                            <div class="avatar-content">
-
                                             </div>
                                         </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">Lorem ipsum dolor sit amet.</div>
-                                    </a>
+                                    </div>
+                                    <!--/ Recent Posts -->
                                 </div>
                             </div>
                         </div>
-                        <!--/ Categories -->
                     </div>
                 </div>
             </div>
+
         </section>
 
     </div>

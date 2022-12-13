@@ -100,7 +100,7 @@ export class BlogsListComponent implements OnInit {
           hidden: false,
         },
         customizer: false,
-        enableLocalStorage: false,
+        enableLocalStorage: true,
       },
     };
   }

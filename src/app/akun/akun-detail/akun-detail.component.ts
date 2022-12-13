@@ -83,7 +83,7 @@ export class AkunDetailComponent implements OnInit {
           hidden: false,
         },
         customizer: false,
-        enableLocalStorage: false,
+        enableLocalStorage: true,
       },
     };
   }
@@ -163,7 +163,7 @@ export class AkunDetailComponent implements OnInit {
 
     this.contentHeader = {
       headerTitle: "Akun",
-      actionButton: true,
+      actionButton: false,
       breadcrumb: {
         type: "",
         links: [

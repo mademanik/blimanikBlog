@@ -7,6 +7,8 @@ import { CoreConfigService } from "@core/services/config.service";
 
 import { BlogsService } from "../_services/blogs.service";
 
+import * as moment from "moment";
+
 @Component({
   selector: "beranda",
   templateUrl: "./beranda.component.html",
@@ -20,6 +22,7 @@ export class BerandaComponent implements OnInit {
   private tempData = [];
   public blogskRows: any;
   public exportCSVData;
+  public _baseUrl = "http://localhost:8080";
 
   // Private
   private _unsubscribeAll: Subject<any>;
@@ -42,7 +45,7 @@ export class BerandaComponent implements OnInit {
           hidden: true,
         },
         customizer: false,
-        enableLocalStorage: false,
+        enableLocalStorage: true,
       },
     };
   }
@@ -65,7 +68,7 @@ export class BerandaComponent implements OnInit {
 
     this.contentHeader = {
       headerTitle: "Beranda",
-      actionButton: true,
+      actionButton: false,
       breadcrumb: {
         type: "",
         links: [
@@ -86,9 +89,6 @@ export class BerandaComponent implements OnInit {
         this.tempData = this.rows;
         this.blogskRows = this.rows;
         this.exportCSVData = this.rows;
-
-        console.log(this.rows);
-        console.log(typeof this.rows);
       },
       error: (err) => {
         alert(err);
@@ -103,7 +103,11 @@ export class BerandaComponent implements OnInit {
     return input;
   }
 
-  removeTag(input){
+  removeTag(input) {
     return input.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 125) + "...";
+  }
+
+  setMoment(input): string {
+    return moment(input).fromNow();
   }
 }

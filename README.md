@@ -3,4 +3,4 @@
  Backend  => Express JS (Node JS)
  Blimanik Coding Blog - Angular - JSON Server
 
-![ss1](ss1.jpg)
+![ss1](ss1.png)

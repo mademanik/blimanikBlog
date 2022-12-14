@@ -1,7 +1,7 @@
 # blimanikBlog
- Frontend => Angular,
- Backend  => Express JS (Node JS)
- Blimanik Coding Blog - Angular - JSON Server
+- Frontend => Angular.
+- Backend  => Express JS (Node JS).
+- Blimanik Coding Blog - Angular - JSON Server.
 
 1. Home Screen
 ![ss1](ss1.png)

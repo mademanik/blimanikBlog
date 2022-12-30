@@ -204,11 +204,11 @@ export class AddBlogComponent implements OnInit {
       this.contentHeaderName = "Edit Blog";
       this.api.getBlogById(this.id).subscribe({
         next: (res) => {
-          this.blogForm.patchValue(res);
+          this.blogForm.patchValue(res[0]);
 
-          if (res.fileUpload) {
-            this.fileDownload = `http://localhost:8080/files/${res.fileUpload}`;
-            this.fileNameDb = res.fileUpload;
+          if (res[0].fileUpload) {
+            this.fileDownload = `http://localhost:8080/files/${res[0].fileUpload}`;
+            this.fileNameDb = res[0].fileUpload;
           }
         },
       });

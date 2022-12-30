@@ -63,6 +63,10 @@ export class ReadBlogComponent implements OnInit {
         enableLocalStorage: true,
       },
     };
+
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
   }
 
   setMoment(input): string {

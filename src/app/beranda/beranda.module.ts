@@ -18,6 +18,7 @@ const routes: Routes = [
   {
     path: "readBlog/:id",
     component: ReadBlogComponent,
+    pathMatch : "full"
   },
 ];
 

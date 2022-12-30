@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes, RouteReuseStrategy } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CoreCommonModule } from "@core/common.module";
@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: "readBlog/:id",
     component: ReadBlogComponent,
-    pathMatch : "full"
+    pathMatch: 'full'
   },
 ];
 

@@ -218,8 +218,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     this.currentUser = this.storageService.getUser();
     // console.log(this.currentUser);
+    // console.log(this.currentUser.id);
 
-    this.getUserDetailById(this.currentUser.id);
+    if (this.currentUser.id) {
+      this.getUserDetailById(this.currentUser.id);
+    } 
 
     // Subscribe to the config changes
     this._coreConfigService.config
@@ -273,7 +276,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   getUserDetailById(id: number) {
     this.userDetailService.getUserDetailById(id).subscribe({
       next: (res) => {
-        // console.log(res);
+        console.log(res);
         if (res) {
           if (res[0].profile) {
             this.avatarImage = `${this._baseUrl}/files/avatar/${res[0].profile}`;

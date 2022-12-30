@@ -64,9 +64,9 @@ export class ReadBlogComponent implements OnInit {
       },
     };
 
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    //   return false;
+    // };
   }
 
   setMoment(input): string {
@@ -162,5 +162,53 @@ export class ReadBlogComponent implements OnInit {
     } else {
       alert("Blogs id not found");
     }
+  }
+
+  showRecentBlog(blogId): void {
+    // Subscribe to config changes
+    this._coreConfigService.config
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((config) => {
+        this.coreConfig = config;
+      });
+
+    this.id = blogId;
+    this.addCommentForm = this.formBuilder.group({
+      blogId: [this.id, Validators.required],
+      name: ["", Validators.required],
+      email: ["", Validators.required],
+      comment: ["", Validators.required],
+    });
+
+    this.blogsService.getBlogById(this.id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.data = res[0];
+      },
+    });
+
+    this.commentsService.getCommentsByBlogId(this.id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.comments = res;
+      },
+    });
+
+    this.getAllBlogs();
+
+    this.contentHeader = {
+      headerTitle: "Beranda",
+      actionButton: false,
+      breadcrumb: {
+        type: "",
+        links: [
+          {
+            name: "Beranda",
+            isLink: true,
+            link: "/beranda",
+          },
+        ],
+      },
+    };
   }
 }
